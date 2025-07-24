@@ -69,9 +69,9 @@ public class AuthService implements IAuthService {
         User emailUser = userRepo.save(user);
 
         SendEmailEventDto sendEmailEventDto = new SendEmailEventDto();
-        sendEmailEventDto.setEmailTo(emailUser.getEmail());
-        sendEmailEventDto.setEmailBody("Welcome to Scaler "+ emailUser.getName());
-        sendEmailEventDto.setEmailSubject("Onboarding email for " + emailUser.getName());
+        sendEmailEventDto.setTo(emailUser.getEmail());
+        sendEmailEventDto.setBody("Welcome to Scaler "+ emailUser.getName());
+        sendEmailEventDto.setSubject("Onboarding email for " + emailUser.getName());
 
         kafkaTemplate.send("sendEmailEvent", objectMapper.writeValueAsString(sendEmailEventDto));
 

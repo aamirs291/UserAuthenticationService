@@ -1,5 +1,6 @@
 package com.scaler.userauthenticationoauth2service.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.scaler.userauthenticationoauth2service.dtos.SignupRequestDto;
 import com.scaler.userauthenticationoauth2service.dtos.UserDto;
 import com.scaler.userauthenticationoauth2service.models.Role;
@@ -24,7 +25,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public UserDto signup(@RequestBody SignupRequestDto signupRequestDto) {
+    public UserDto signup(@RequestBody SignupRequestDto signupRequestDto) throws JsonProcessingException {
         List<Role> roleList = new ArrayList<>();
         Role role = new Role();
         role.setRoleName(signupRequestDto.getRole());

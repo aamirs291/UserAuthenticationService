@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SendEmailEventDto {
-    private String emailBody;
-    private String emailSubject;
-    private String emailTo;
+    private String body;
+    private String subject;
+    private String to;
 }
