@@ -2,6 +2,7 @@ package com.scaler.userauthenticationoauth2service.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.scaler.userauthenticationoauth2service.dtos.SignupRequestDto;
+import com.scaler.userauthenticationoauth2service.dtos.SignupResponseDto;
 import com.scaler.userauthenticationoauth2service.dtos.UserDto;
 import com.scaler.userauthenticationoauth2service.models.Role;
 import com.scaler.userauthenticationoauth2service.models.User;
@@ -24,28 +25,35 @@ public class AuthController {
         this.authService = authService;
     }
 
+    // @PostMapping("/signup")
+    // public UserDto signup(@RequestBody SignupRequestDto signupRequestDto) throws JsonProcessingException {
+    //     List<Role> roleList = new ArrayList<>();
+    //     Role role = new Role();
+    //     role.setRoleName(signupRequestDto.getRole());
+    //     roleList.add(role);
+    //     User user = authService.signup(signupRequestDto.getName(), signupRequestDto.getEmail(), signupRequestDto.getPassword(), signupRequestDto.getPhoneNumber(), roleList);
+    //     return convertToDto(user);
+    // }
+
     @PostMapping("/signup")
-    public UserDto signup(@RequestBody SignupRequestDto signupRequestDto) throws JsonProcessingException {
-        List<Role> roleList = new ArrayList<>();
-        Role role = new Role();
-        role.setRoleName(signupRequestDto.getRole());
-        roleList.add(role);
-        User user = authService.signup(signupRequestDto.getName(), signupRequestDto.getEmail(), signupRequestDto.getPassword(), signupRequestDto.getPhoneNumber(), roleList);
-        return convertToDto(user);
+    public SignupResponseDto signup(@RequestBody SignupRequestDto signupRequestDto) throws JsonProcessingException {
+        // SignupRequestDto signupRequestDto = authService.signup(signupRequestDto);
+
+        return authService.signup(signupRequestDto);
     }
 
-    private UserDto convertToDto(User user){
+    // private UserDto convertToDto(User user){
 
-        if (user==null) {
-            return null;
-        }
+    //     if (user==null) {
+    //         return null;
+    //     }
 
-        UserDto userDto = new UserDto();
-        userDto.setName(user.getName());
-        userDto.setEmail(user.getEmail());
-        userDto.setId(user.getId());
-        userDto.setRoles(user.getRoles());
+    //     UserDto userDto = new UserDto();
+    //     userDto.setName(user.getName());
+    //     userDto.setEmail(user.getEmail());
+    //     userDto.setId(user.getId());
+    //     userDto.setRoles(user.getRoles());
 
-        return userDto;
-    }
+    //     return userDto;
+    // }
 }

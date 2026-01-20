@@ -20,6 +20,6 @@ public class User extends BaseModel {
     private String email;
     private String phoneNumber;
 //    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Role> roles;
 }
